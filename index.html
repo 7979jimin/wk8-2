@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Honest Woodcutter: 동사 과거 시제</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nunito:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Nunito', 'Jua', sans-serif;
+            background-color: #e8f5e9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .app-container {
+            background-color: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .page {
+            display: none;
+            padding: 40px 30px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e7d32;
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        .grammar-focus {
+            background-color: #fff3e0;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-left: 6px solid #ff9800;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .story-box {
+            background-color: #f1f8e9;
+            padding: 25px;
+            border-radius: 16px;
+            font-size: 1.4em;
+            line-height: 2;
+            border: 3px dashed #81c784;
+            text-align: center;
+        }
+
+        /* 목표 문법 강조 스타일 */
+        .target-grammar {
+            color: #d84315; /* 눈에 띄는 진한 주황/빨강 계열 */
+            font-weight: 900;
+            background-color: #ffccbc;
+            padding: 2px 8px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.3em;
+            font-family: inherit;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            box-shadow: 0 4px 0 #388e3c;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .nav-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #388e3c;
+        }
+
+        .nav-btn.secondary {
+            background-color: #9e9e9e;
+            box-shadow: 0 4px 0 #757575;
+            margin-top: 0;
+        }
+        
+        .nav-btn.secondary:active {
+            box-shadow: 0 0 0 #757575;
+        }
+
+        /* Test Page Styles */
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 2px solid #eeeeee;
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 1.1em;
+            font-family: inherit;
+            border: 2px solid #81c784;
+            background-color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .option-btn:hover {
+            background-color: #c8e6c9;
+        }
+
+        .option-btn.selected {
+            background-color: #4caf50;
+            color: white;
+            border-color: #388e3c;
+        }
+
+        .option-btn.correct {
+            background-color: #2196f3;
+            color: white;
+            border-color: #1976d2;
+        }
+
+        .option-btn.wrong {
+            background-color: #f44336;
+            color: white;
+            border-color: #d32f2f;
+        }
+
+        #result-message {
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- 학습 페이지 (Reading Page) -->
+        <div id="page-learning" class="page active">
+            <h1>🪓 The Honest Woodcutter</h1>
+            
+            <div class="grammar-focus">
+                <strong>오늘의 문법: 과거 시제 (Past Tense)</strong><br>
+                이미 일어난 일을 이야기할 때는 동사의 모양이 바뀌어요. 동사 뒤에 <strong>-ed</strong>가 붙거나 모양이 완전히 달라지기도 한답니다. 아래 정직한 나무꾼 이야기에서 <span class="target-grammar">진한 주황색</span>으로 강조된 단어들을 잘 살펴보세요!
+            </div>
+
+            <div class="story-box">
+                One day, a woodcutter <span class="target-grammar">worked</span> in the forest. 🌲<br>
+                Oh no! He <span class="target-grammar">dropped</span> his old axe into the river. 💦<br>
+                He <span class="target-grammar">cried</span> loudly. 😭<br>
+                Suddenly, a fairy <span class="target-grammar">appeared</span>. ✨<br>
+                She <span class="target-grammar">showed</span> him a golden axe, but he <span class="target-grammar">said</span>, "That is not mine." 🙅‍♂️<br>
+                He was very honest, so the fairy <span class="target-grammar">gave</span> him all the axes! 🎁
+            </div>
+
+            <button class="nav-btn" onclick="switchPage('page-test')">배운 내용 시험 보기 📝</button>
+        </div>
+
+        <!-- 시험 페이지 (Test Page) -->
+        <div id="page-test" class="page">
+            <h1>📝 Grammar Test</h1>
+            <p style="text-align: center; color: #555; margin-top: 0;">방금 읽은 이야기의 과거 동사를 떠올려보며 알맞은 단어를 골라보세요!</p>
+
+            <div class="question" data-answer="1">
+                1. He ________ his old axe into the river.
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption(this, 'q1')">drop</button>
+                    <button class="option-btn" onclick="selectOption(this, 'q1')">dropped</button>
+                </div>
+            </div>
+
+            <div class="question" data-answer="0">
+                2. Suddenly, a fairy ________.
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption(this, 'q2')">appeared</button>
+                    <button class="option-btn" onclick="selectOption(this, 'q2')">appear</button>
+                </div>
+            </div>
+
+            <div class="question" data-answer="1">
+                3. The fairy ________ him all the axes!
+                <div class="options">
+                    <button class="option-btn" onclick="selectOption(this, 'q3')">give</button>
+                    <button class="option-btn" onclick="selectOption(this, 'q3')">gave</button>
+                </div>
+            </div>
+
+            <button class="nav-btn" onclick="checkAnswers()">정답 확인하기!</button>
+            <div id="result-message"></div>
+            <button class="nav-btn secondary" onclick="resetTestAndSwitchPage('page-learning')">📖 다시 이야기 읽으러 가기</button>
+        </div>
+
+    </div>
+
+    <script>
+        // 페이지 전환 함수
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // 시험 관련 변수
+        let userAnswers = { q1: null, q2: null, q3: null };
+        const correctAnswers = { q1: 1, q2: 0, q3: 1 }; // 0: 왼쪽 버튼, 1: 오른쪽 버튼
+
+        // 답안 선택
+        function selectOption(btn, questionId) {
+            const siblings = btn.parentElement.children;
+            for(let i = 0; i < siblings.length; i++) {
+                siblings[i].classList.remove('selected');
+            }
+            btn.classList.add('selected');
+            userAnswers[questionId] = Array.from(siblings).indexOf(btn);
+        }
+
+        // 정답 확인
+        function checkAnswers() {
+            if (userAnswers.q1 === null || userAnswers.q2 === null || userAnswers.q3 === null) {
+                const msg = document.getElementById('result-message');
+                msg.innerText = "🤔 아직 풀지 않은 문제가 있어요!";
+                msg.style.color = "#d32f2f";
+                return;
+            }
+
+            let score = 0;
+            ['q1', 'q2', 'q3'].forEach(q => {
+                const qDiv = document.querySelector(`.question:nth-of-type(${parseInt(q.charAt(1))}) .options`);
+                const buttons = qDiv.children;
+                const userAnswer = userAnswers[q];
+                const correctAnswer = correctAnswers[q];
+
+                buttons[0].classList.remove('correct', 'wrong');
+                buttons[1].classList.remove('correct', 'wrong');
+
+                if (userAnswer === correctAnswer) {
+                    buttons[userAnswer].classList.add('correct');
+                    score++;
+                } else {
+                    buttons[userAnswer].classList.add('wrong');
+                    buttons[correctAnswer].classList.add('correct');
+                }
+            });
+
+            const resultBox = document.getElementById('result-message');
+            if (score === 3) {
+                resultBox.innerText = "🎉 대단해요! 3문제 모두 다 맞았어요! 🌟";
+                resultBox.style.color = "#2e7d32";
+            } else {
+                resultBox.innerText = `👍 잘했어요! 3문제 중 ${score}문제를 맞혔네요.`;
+                resultBox.style.color = "#ff9800";
+            }
+        }
+
+        // 초기화하고 학습 페이지로 돌아가기
+        function resetTestAndSwitchPage(pageId) {
+            // 선택 초기화
+            userAnswers = { q1: null, q2: null, q3: null };
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'wrong');
+            });
+            document.getElementById('result-message').innerText = "";
+            
+            // 페이지 이동
+            switchPage(pageId);
+        }
+    </script>
+</body>
+</html>
